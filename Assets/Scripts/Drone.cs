@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class DroneMovement : MonoBehaviour
@@ -6,21 +7,29 @@ public class DroneMovement : MonoBehaviour
     private Rigidbody rb;
     private PlayerInputActions input;
     private PlantManager plantManager;
+    private ParticleSystem ps;
 
     [Header("Movement details")]
     [SerializeField] private float moveSpeed = 5;
     private Vector2 moveInput;
+    private bool canMove = true;
 
     [Header("Plant details")]
     [SerializeField] private PlantType selectedPlant;
 
-    private Crop targetedCrop;
+    [Header("Water details")]
+    [SerializeField] private float waterDuration = 1f;
+
+    private Cropfield cropDetected;
+    private Seed seedDetected;
+    private Coroutine immobilizeDroneCoroutine;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         input = new PlayerInputActions();
         plantManager = FindFirstObjectByType<PlantManager>();
+        ps = GetComponentInChildren<ParticleSystem>();
     }
 
     void OnEnable()
@@ -40,45 +49,92 @@ public class DroneMovement : MonoBehaviour
     {
         HandleMovement();
         HandlePlantAction();
+        HandleWatering();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Crop"))
+        GameObject go = other.gameObject;
+
+        if (go.CompareTag("Crop"))
+            cropDetected = go.GetComponent<Cropfield>();
+
+        if (go.CompareTag("Seed"))
         {
-            targetedCrop = other.gameObject.GetComponent<Crop>();
+            seedDetected = go.GetComponent<Seed>();
+            if (seedDetected.CanGather())
+                seedDetected.Gather(transform);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("Crop"))
-            targetedCrop = null;
+        GameObject go = other.gameObject;
+
+        if (go.CompareTag("Crop"))
+            cropDetected = null;
+
+        if (go.CompareTag("Seed"))
+            seedDetected = null;
+    }
+
+    private void HandleMovement()
+    {
+        if (!canMove)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        float xSpeed = moveInput.x * moveSpeed;
+        float zSpeed = moveInput.y * moveSpeed;
+
+        rb.linearVelocity = new Vector3(xSpeed, 0, zSpeed);
     }
 
     private void HandlePlantAction()
     {
         if (input.Drone.Plant.WasPressedThisFrame())
         {
-            if (!targetedCrop)
-            {
+            if (!cropDetected)
                 return;
-            }
 
-            if (!targetedCrop.CanPlant())
-            {
+            if (!cropDetected.CanPlant())
                 return;
-            }
 
-            plantManager.PlantOnCrop(selectedPlant, targetedCrop);
+            plantManager.PlantOnCrop(selectedPlant, cropDetected);
         }
     }
 
-    private void HandleMovement()
+    private void HandleWatering()
     {
-        float xSpeed = moveInput.x * moveSpeed;
-        float zSpeed = moveInput.y * moveSpeed;
+        if (input.Drone.Water.WasPressedThisFrame())
+        {
+            if (!seedDetected)
+                return;
 
-        rb.linearVelocity = new Vector3(xSpeed, 0, zSpeed);
+            PlayWaterEffect();
+            ImmobilizeDrone();
+            seedDetected.WaterSeed();
+        }
+    }
+
+    private void PlayWaterEffect() => ps.Play();
+
+    private void ImmobilizeDrone()
+    {
+        if (immobilizeDroneCoroutine != null)
+            StopCoroutine(immobilizeDroneCoroutine);
+
+        immobilizeDroneCoroutine = StartCoroutine(ImmobilizeDroneCo());
+    }
+
+    private IEnumerator ImmobilizeDroneCo()
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(waterDuration);
+
+        canMove = true;
     }
 }

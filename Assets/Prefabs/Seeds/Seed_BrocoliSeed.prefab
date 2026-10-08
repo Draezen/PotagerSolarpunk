@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: seedStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: 9267df9dddaa0f240863697382afa3b8, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: collectible
+      value: 
+      objectReference: {fileID: 3621757695482379603, guid: 85ef57f2fed790044b32f76f1dc1766a, type: 3}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.63607
@@ -62,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5377546623783070221, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_Name
-      value: BrocoliSeed Variant
+      value: Seed_BrocoliSeed
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

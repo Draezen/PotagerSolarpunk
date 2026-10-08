@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Crop : MonoBehaviour
+public class Cropfield : MonoBehaviour
 {
     [Header("Light effect")]
     [SerializeField] private MeshRenderer lightEffect;
@@ -28,17 +28,13 @@ public class Crop : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
             ActivateLightEffect();
-        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
             ResetLightEffect();
-        }
     }
 
     private void ActivateLightEffect() => lightEffect.material.color = seedInCrop ? cropHasPlantColor : cropIsEmptyColor;

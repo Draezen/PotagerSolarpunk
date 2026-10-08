@@ -5,7 +5,7 @@ public class PlantManager : MonoBehaviour
     [Header("Plants")]
     [SerializeField] private PlantDetail[] plants;
 
-    public void PlantOnCrop(PlantType type, Crop crop)
+    public void PlantOnCrop(PlantType type, Cropfield crop)
     {
         GameObject seed = GetSeedForPlant(type);
 

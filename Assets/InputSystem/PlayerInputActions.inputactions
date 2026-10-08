@@ -23,13 +23,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Water",
+                    "type": "Button",
+                    "id": "640a7d14-1262-4c2f-917e-4211635583d7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "2D Vector",
                     "id": "ab85b8ee-8776-472c-ba9c-67470d8e2d41",
-                    "path": "2DVector(mode=1)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -84,7 +93,7 @@
                 {
                     "name": "2D Vector",
                     "id": "3624ca27-2309-4414-bb0b-7baef9469351",
-                    "path": "2DVector(mode=1)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -139,7 +148,7 @@
                 {
                     "name": "2D Vector",
                     "id": "05dc9195-2e32-40ed-b3d6-44d454498d7e",
-                    "path": "2DVector(mode=1)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -194,7 +203,7 @@
                 {
                     "name": "2D Vector",
                     "id": "670ee270-b8fb-43c7-8c01-6f152e9b2427",
-                    "path": "2DVector(mode=1)",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -265,6 +274,28 @@
                     "processors": "",
                     "groups": ";keyboard + mouse",
                     "action": "Plant",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b815451e-bdac-428e-8c61-174aaf2b64cf",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard + mouse",
+                    "action": "Water",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a43cf7f-f9aa-4896-8815-8c3a2fcdcbc9",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Controller",
+                    "action": "Water",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

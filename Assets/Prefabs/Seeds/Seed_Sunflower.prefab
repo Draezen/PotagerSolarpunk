@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3609119034498473591
+--- !u!1001 &6775559406938671822
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,15 +11,19 @@ PrefabInstance:
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: ripStep
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 385b93692dd48c24ab6fdee753578d57, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 2dd802c13e3863a4d8d42ed37a700a6c, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: growStep
       value: 
-      objectReference: {fileID: 919132149155446097, guid: bf17c08cb58306f47864a3ad04fa5872, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: add11a2d0ba1a2145949d8a5dbf1a589, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: seedStep
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 47717935c0688fd458e769a02b18505b, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 353d65db0e3a9e04e92f9eedb18214ea, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: collectible
+      value: 
+      objectReference: {fileID: 2285158791343662418, guid: a3e3367af3ddbc44c9312ef830afe3ab, type: 3}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.63607
@@ -62,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5377546623783070221, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_Name
-      value: Carrot Variant
+      value: Seed_Sunflower
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
