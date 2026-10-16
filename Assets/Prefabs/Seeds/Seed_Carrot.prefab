@@ -8,20 +8,60 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 558647126303526792, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: b1e00f31a25e6454facaacf6d8f097a8, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: ripStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: 385b93692dd48c24ab6fdee753578d57, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: ripTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: growStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: bf17c08cb58306f47864a3ad04fa5872, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: growTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: seedStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: 47717935c0688fd458e769a02b18505b, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: seedTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: rottenTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: collectible
+      value: 
+      objectReference: {fileID: 8907175192826698355, guid: 89906f4634878d24b97ae93721c41627, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: pointsValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: ripStepPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 385b93692dd48c24ab6fdee753578d57, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: growStepPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: bf17c08cb58306f47864a3ad04fa5872, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: seedStepPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 47717935c0688fd458e769a02b18505b, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: collectiblePrefab
       value: 
       objectReference: {fileID: 8907175192826698355, guid: 89906f4634878d24b97ae93721c41627, type: 3}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}

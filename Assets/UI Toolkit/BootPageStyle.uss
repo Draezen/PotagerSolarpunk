@@ -1,0 +1,36 @@
+:root {
+}
+
+.header {
+    font-size: 650%;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/LilitaOne-Regular.ttf?fileID=12800000&guid=b0b25c7081699704f917d02e28f31692&type=3#LilitaOne-Regular");
+    color: rgb(255, 255, 255);
+}
+
+
+
+.unity-progress-bar__progress {
+    background-color: rgb(131, 203, 23);
+    background-image: none;
+    -unity-slice-left: -26;
+    -unity-slice-top: -26;
+    -unity-slice-right: -26;
+    -unity-slice-bottom: -26;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.unity-progress-bar__background {
+    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.unity-progress-bar {
+    width: auto;
+    height: auto;
+}

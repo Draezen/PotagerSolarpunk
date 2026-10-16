@@ -1,85 +1,131 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DroneMovement : MonoBehaviour
 {
-    private Rigidbody rb;
-    private PlayerInputActions input;
-    private PlantManager plantManager;
-    private ParticleSystem ps;
-
     [Header("Movement details")]
     [SerializeField] private float moveSpeed = 5;
+    [SerializeField] private AudioSource moveSFX;
     private Vector2 moveInput;
     private bool canMove = true;
-
-    [Header("Plant details")]
-    [SerializeField] private PlantType selectedPlant;
+    private float moveSfxOriginalPitch;
 
     [Header("Water details")]
     [SerializeField] private float waterDuration = 1f;
+    [SerializeField] private AudioSource waterSFX;
+    [SerializeField] private ParticleSystem waterPS;
 
-    private Cropfield cropDetected;
-    private Seed seedDetected;
+    [Header("Plant details")]
+    [SerializeField] private AudioSource plantAS;
+
+    private PlayerInputActions input;
+    private Rigidbody rb;
+    private PlantManager plantManager;
+    private Cropfield cropUnderDrone;
+    private Seed seedUnderdrone;
     private Coroutine immobilizeDroneCoroutine;
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        input = new PlayerInputActions();
         plantManager = FindFirstObjectByType<PlantManager>();
-        ps = GetComponentInChildren<ParticleSystem>();
+        moveSfxOriginalPitch = moveSFX.pitch;
+
+        input = new PlayerInputActions();
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
+        input.Drone.Move.performed += OnMovePerformed;
+        input.Drone.Move.canceled += OnMoveCanceled;
+
+        input.Drone.Plant.started += OnPlantActionStarted;
+        input.Drone.Water.started += OnWaterActionStarted;
+
         input.Enable();
-
-        input.Drone.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
-        input.Drone.Movement.canceled += ctx => moveInput = Vector2.zero;
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
+        input.Drone.Move.performed -= OnMovePerformed;
+        input.Drone.Move.canceled -= OnMoveCanceled;
+
+        input.Drone.Plant.started -= OnPlantActionStarted;
+        input.Drone.Water.started -= OnWaterActionStarted;
+
         input.Disable();
     }
 
-    void Update()
+    private void Update()
     {
         HandleMovement();
-        HandlePlantAction();
-        HandleWatering();
+        CheckIfCanHarvest();
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         GameObject go = other.gameObject;
 
         if (go.CompareTag("Crop"))
-            cropDetected = go.GetComponent<Cropfield>();
+            cropUnderDrone = go.GetComponent<Cropfield>();
 
         if (go.CompareTag("Seed"))
         {
-            seedDetected = go.GetComponent<Seed>();
-            if (seedDetected.CanGather())
-                seedDetected.Gather(transform);
+            seedUnderdrone = go.GetComponent<Seed>();
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnMovePerformed(InputAction.CallbackContext ctx) => moveInput = ctx.ReadValue<Vector2>();
+
+    private void OnMoveCanceled(InputAction.CallbackContext ctx) => moveInput = Vector2.zero;
+
+    private void OnWaterActionStarted(InputAction.CallbackContext context)
+    {
+        if (!seedUnderdrone)
+            return;
+
+        PlayWaterEffect();
+        PlayWaterSFX();
+        ImmobilizeDrone();
+        seedUnderdrone.WaterSeed();
+    }
+
+    private void OnPlantActionStarted(InputAction.CallbackContext context)
+    {
+        if (!cropUnderDrone)
+            return;
+
+        if (!cropUnderDrone.CanPlant())
+            return;
+
+        plantManager.PlantOnCrop(cropUnderDrone);
+        plantAS.Play();
+    }
+
+    private void CheckIfCanHarvest()
+    {
+        if (seedUnderdrone && seedUnderdrone.CanHarvest())
+            seedUnderdrone.Harvest(transform);
+    }
+
+    private void OnTriggerExit(Collider other)
     {
         GameObject go = other.gameObject;
 
         if (go.CompareTag("Crop"))
-            cropDetected = null;
+            cropUnderDrone = null;
 
         if (go.CompareTag("Seed"))
-            seedDetected = null;
+            seedUnderdrone = null;
     }
+
 
     private void HandleMovement()
     {
+        HandleMotorSound();
+
         if (!canMove)
         {
             rb.linearVelocity = Vector3.zero;
@@ -92,34 +138,15 @@ public class DroneMovement : MonoBehaviour
         rb.linearVelocity = new Vector3(xSpeed, 0, zSpeed);
     }
 
-    private void HandlePlantAction()
+    private void HandleMotorSound()
     {
-        if (input.Drone.Plant.WasPressedThisFrame())
-        {
-            if (!cropDetected)
-                return;
-
-            if (!cropDetected.CanPlant())
-                return;
-
-            plantManager.PlantOnCrop(selectedPlant, cropDetected);
-        }
+        float targetPitch = rb.linearVelocity.magnitude > 0.1f ? moveSfxOriginalPitch + .2f : moveSfxOriginalPitch;
+        moveSFX.pitch = Mathf.Lerp(moveSFX.pitch, targetPitch, Time.deltaTime * 2f);
     }
 
-    private void HandleWatering()
-    {
-        if (input.Drone.Water.WasPressedThisFrame())
-        {
-            if (!seedDetected)
-                return;
+    private void PlayWaterEffect() => waterPS.Play();
 
-            PlayWaterEffect();
-            ImmobilizeDrone();
-            seedDetected.WaterSeed();
-        }
-    }
-
-    private void PlayWaterEffect() => ps.Play();
+    private void PlayWaterSFX() => waterSFX.Play();
 
     private void ImmobilizeDrone()
     {

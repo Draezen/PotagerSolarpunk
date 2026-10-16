@@ -5,5 +5,5 @@ using UnityEngine;
 public class PlantDetail
 {
     public PlantType type;
-    public GameObject seed;
+    public GameObject seedPrefab;
 }

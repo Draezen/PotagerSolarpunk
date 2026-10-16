@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/BootPageStyle.uss?fileID=7433441132597879392&amp;guid=0a5d7ee5c266d85469dc7372d189dac0&amp;type=3#BootPageStyle"/>
+    <ui:VisualElement name="Container" enabled="true" style="flex-grow: 1; align-self: auto; justify-content: flex-start; background-color: rgb(0, 0, 0); align-content: auto; align-items: auto;">
+        <ui:VisualElement style="flex-grow: 1; align-self: center; justify-content: center;">
+            <ui:Label text="Loading" name="LoadingText" class="header" style="align-self: center;"/>
+            <ui:ProgressBar value="0.5" title="" name="LoadingProgressBar" high-value="1" style="width: auto; height: auto;"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

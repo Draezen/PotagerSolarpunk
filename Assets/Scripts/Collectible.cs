@@ -2,27 +2,31 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    private Transform target;
-    private Vector3 targetOfffsetPosition;
-
     [Header("Movement details")]
     [SerializeField] private float moveSpeed = 1;
 
     [Header("Collectible ressource")]
-    [SerializeField] private GameObject plant;
+    [SerializeField] private GameObject plantPrefab;
 
-    void Awake()
+    private Transform target;
+    private Vector3 targetOfffsetPosition;
+
+    private void Awake()
     {
-        Instantiate(plant, transform);
+        Instantiate(plantPrefab, transform);
     }
 
-    void Update()
+    private void Update()
     {
         if (target)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position + targetOfffsetPosition, moveSpeed * Time.deltaTime);
+            Vector3 targetPosition = target.position + targetOfffsetPosition;
+            Vector3 direction = targetPosition - transform.position;
 
-            if (Vector3.Distance(transform.position, target.position + targetOfffsetPosition) < 0.001f)
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.FromToRotation(Vector3.up, direction);
+
+            if (Vector3.Distance(transform.position, targetPosition) < 0.001f)
                 Destroy(gameObject);
         }
     }
@@ -30,6 +34,6 @@ public class Collectible : MonoBehaviour
     public void SetTarget(Transform target, Vector3 offset = default)
     {
         this.target = target;
-        this.targetOfffsetPosition = offset;
+        targetOfffsetPosition = offset;
     }
 }

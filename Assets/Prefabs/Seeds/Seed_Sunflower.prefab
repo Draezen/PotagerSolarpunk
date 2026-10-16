@@ -8,20 +8,60 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 558647126303526792, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 1fcac2da20a99b045a1993adf6af7ac9, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: ripStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: 2dd802c13e3863a4d8d42ed37a700a6c, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: ripTime
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: growStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: add11a2d0ba1a2145949d8a5dbf1a589, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: growTime
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: seedStep
       value: 
       objectReference: {fileID: 919132149155446097, guid: 353d65db0e3a9e04e92f9eedb18214ea, type: 3}
     - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: seedTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: rottenTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: collectible
+      value: 
+      objectReference: {fileID: 2285158791343662418, guid: a3e3367af3ddbc44c9312ef830afe3ab, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: pointsValue
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: ripStepPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 2dd802c13e3863a4d8d42ed37a700a6c, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: growStepPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: add11a2d0ba1a2145949d8a5dbf1a589, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: seedStepPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 353d65db0e3a9e04e92f9eedb18214ea, type: 3}
+    - target: {fileID: 1138598820424941294, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
+      propertyPath: collectiblePrefab
       value: 
       objectReference: {fileID: 2285158791343662418, guid: a3e3367af3ddbc44c9312ef830afe3ab, type: 3}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
@@ -38,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -46,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalRotation.z
@@ -58,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2832772161816567373, guid: 3eab424a1f370ed4c894927398d019bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
